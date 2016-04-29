@@ -25,6 +25,22 @@ defmodule Zendesk.Ticket do
   end
 
   @doc """
+  Add a requester with name and email to the ticket
+
+  `name`: requester name
+
+  `email`: requester email
+  """
+  def add_requester(ticket, name: name, email: email) do
+    Map.put(ticket, :requester, %{name: name, email: email})
+  end
+
+  def add_requester(ticket, email: email) do
+    Map.put(ticket, :requester, %{name: email, email: email})
+  end
+
+
+  @doc """
   Add a custom field in the ticket
 
   `id`: the custom field id
@@ -49,7 +65,6 @@ defmodule Zendesk.Ticket do
   def add_collaborator(ticket, email: email) do
     add_list_item(ticket, :collaborators, email)
   end
-
 
   @doc """
   Add a collaborator with an id to the ticket
