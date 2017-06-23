@@ -9,7 +9,7 @@ defmodule Zendesk.UserApi do
   @users_for_organizations "/organizations/%s/users.json"
   @user_with_id "/users/%s.json"
   @many_users "/users/show_many.json?ids=%s"
-  @searches_users "/users/search.json?query=\"%s\""
+  @searches_users "/users/search.json?query=%s"
   @autocomplete_users "/users/autocomplete.json?name=\"%s\""
   @current_user "/users/me.json"
 

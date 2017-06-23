@@ -192,6 +192,10 @@ defmodule Zendesk.Ticket do
     Map.put(ticket, :assignee_id, assignee_id)
   end
 
+  def set_author_id(ticket, author_id) do
+    put_in(ticket, [:comment, :author_id], author_id)
+  end
+
   @doc """
   Set the ticket type
 
