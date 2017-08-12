@@ -54,11 +54,11 @@ defmodule Zendesk.TicketField do
   end
 
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:ticket_field)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:ticket_field)
   end
 
   def from_json_array(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:ticket_fields)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:ticket_fields)
   end
 
 end

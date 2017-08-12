@@ -5,11 +5,12 @@ defmodule NewTest.Mixfile do
     [app: :zenixir,
      version: "0.0.1",
      elixir: "~> 1.2",
+     description: description(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-     deps: deps]
+     deps: deps()]
   end
 
   # Configuration for the OTP application

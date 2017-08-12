@@ -4,13 +4,15 @@ defmodule Zendesk.TicketFieldsApi do
   Module that contains fucntions to deal with Zendesk ticket fields
   """
 
+  use Zendesk.CommonApi
+  alias Zendesk.TicketField
+
   @all_fields "/ticket_fields.json"
   @get_field "/ticket_fields/%s.json"
   @update_field "/ticket_fields/%s.json"
   @create_field "/ticket_fields.json"
 
-  use Zendesk.CommonApi
-  alias Zendesk.TicketField
+  @headers ["Content-Type": "application/json"]
 
 
   @doc """
@@ -39,7 +41,7 @@ defmodule Zendesk.TicketFieldsApi do
     json = TicketField.to_json(%{ticket_field: ticket_field})
 
     perform_request(&parse_ticket_field/1, account: account, verb: :post,
-    body: json, endpoint: @create_field, headers: headers)
+    body: json, endpoint: @create_field, headers: @headers)
   end
 
   @doc """
@@ -55,7 +57,7 @@ defmodule Zendesk.TicketFieldsApi do
     perform_request(&parse_ticket_field/1, account: account, verb: :put,
     body: json,
     endpoint: ExPrintf.sprintf(@update_field, [field_id]),
-    headers: headers)
+    headers: @headers)
   end
 
   @doc """
@@ -69,10 +71,6 @@ defmodule Zendesk.TicketFieldsApi do
   end
 
   # Private
-
-  defp headers do
-    ["Content-Type": "application/json"]
-  end
 
   defp parse_ticket_delete(response) do
     response

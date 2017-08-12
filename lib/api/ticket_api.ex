@@ -24,6 +24,8 @@ defmodule Zendesk.TicketApi do
   @autocomplete_problems "/problems/autocomplete.json"
   @incremental_tickets "/incremental/tickets.json?start_time=%s"
 
+  @headers ["Content-Type": "application/json"]
+
   @doc """
   Create a ticket
 
@@ -31,7 +33,7 @@ defmodule Zendesk.TicketApi do
   """
   def create_ticket(account, ticket: ticket) do
     json = Ticket.to_json(%{ticket: ticket})
-    perform_request(&parse_single_ticket/1, account: account, verb: :post, endpoint: @create_endpoint, body: json, headers: headers)
+    perform_request(&parse_single_ticket/1, account: account, verb: :post, endpoint: @create_endpoint, body: json, headers: @headers)
   end
 
   @doc """
@@ -48,7 +50,7 @@ defmodule Zendesk.TicketApi do
     perform_request(&parse_single_ticket/1, account: account,
     verb: :put,
     endpoint: ExPrintf.sprintf(@ticket_with_id, [ticket_id]),
-    body: json, headers: headers)
+    body: json, headers: @headers)
   end
 
   @doc """
@@ -239,7 +241,7 @@ defmodule Zendesk.TicketApi do
     verb: :post,
     endpoint: @autocomplete_problems,
     body: autocomplete_body(text: text),
-    headers: headers)
+    headers: @headers)
   end
 
   @doc """
@@ -262,7 +264,7 @@ defmodule Zendesk.TicketApi do
     account: account, verb: :post,
     endpoint: ExPrintf.sprintf(@merge_tickets, [target_id]),
     body: merge_tickets_body(ids, target_comment, source_comment),
-    headers: headers)
+    headers: @headers)
   end
 
   # Private
@@ -278,10 +280,6 @@ defmodule Zendesk.TicketApi do
 
   defp ticket_url(id) do
     ExPrintf.sprintf(@ticket_with_id, [id])
-  end
-
-  defp headers do
-    ["Content-Type": "application/json"]
   end
 
   defp parse_delete_ticket(response) do

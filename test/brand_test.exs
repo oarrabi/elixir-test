@@ -12,7 +12,7 @@ defmodule BrandTest do
       |> all_brands
 
       assert length(res) == 2
-      assert res |> hd |> Dict.get(:name) == "BrandOne"
+      assert res |> hd |> Map.get(:name) == "BrandOne"
     end
   end
 

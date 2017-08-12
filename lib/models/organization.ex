@@ -10,7 +10,7 @@ defmodule Zendesk.Organization do
   `json`: the json to parse
   """
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:organizations)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:organizations)
   end
   
 end

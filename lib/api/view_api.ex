@@ -17,6 +17,8 @@ defmodule Zendesk.ViewApi do
   @update_view "/views/%s.json"
   @count_view "/views/%s/count.json"
 
+  @headers ["Content-Type": "application/json"]
+
   use Zendesk.CommonApi
   alias Zendesk.View
 
@@ -60,7 +62,7 @@ defmodule Zendesk.ViewApi do
   def create_view(account, view) do
     perform_request(&parse_get_view/1, account: account, verb: :post,
     endpoint: @create_view,
-    headers: headers,
+    headers: @headers,
     body: View.to_json(view))
   end
 
@@ -72,7 +74,7 @@ defmodule Zendesk.ViewApi do
   def preview_view(account, view) do
     perform_request(&parse_get_tickets/1, account: account, verb: :post,
     endpoint: @preview_view,
-    headers: headers,
+    headers: @headers,
     body: View.to_json(view))
   end
 
@@ -84,7 +86,7 @@ defmodule Zendesk.ViewApi do
   def count_view_preview(account, view) do
     perform_request(&parse_view_count/1, account: account, verb: :post,
     endpoint: @preview_count_view,
-    headers: headers,
+    headers: @headers,
     body: View.to_json(view))
   end
 
@@ -98,7 +100,7 @@ defmodule Zendesk.ViewApi do
   def update_view(account, view_id: view_id, view: view) do
     perform_request(&parse_get_view/1, account: account, verb: :put,
     endpoint: ExPrintf.sprintf(@update_view, [view_id]),
-    headers: headers,
+    headers: @headers,
     body: View.to_json(view))
   end
 
@@ -155,16 +157,12 @@ defmodule Zendesk.ViewApi do
 
   # Private
 
-  defp headers do
-    ["Content-Type": "application/json"]
-  end
-
   defp parse_views_count(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:view_counts)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:view_counts)
   end
 
   defp parse_view_count(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:view_count)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:view_count)
   end
 
   defp parse_delete_view(response) do

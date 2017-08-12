@@ -239,7 +239,7 @@ defmodule Zendesk.Ticket do
   end
 
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:ticket)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:ticket)
   end
 
   def from_json_array(json) do
@@ -247,7 +247,7 @@ defmodule Zendesk.Ticket do
   end
 
   def from_json_array(json, key) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(key)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(key)
   end
 
   def incremental_from_json_array(json) do

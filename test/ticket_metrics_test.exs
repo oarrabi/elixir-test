@@ -12,7 +12,7 @@ defmodule TicketMetricsTest do
       |> all_metrics
 
       assert length(res) == 100
-      assert res |> hd |> Dict.get(:id) == 2738394508
+      assert res |> hd |> Map.get(:id) == 2738394508
     end
   end
 

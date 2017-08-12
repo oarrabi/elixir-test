@@ -12,7 +12,7 @@ defmodule ViewTest do
       |> all_views
 
       assert length(res) == 11
-      assert res |> hd |> Dict.get(:id) == 29292517
+      assert res |> hd |> Map.get(:id) == 29292517
     end
   end
 
@@ -23,7 +23,7 @@ defmodule ViewTest do
       |> active_views
 
       assert length(res) == 9
-      assert res |> hd |> Dict.get(:id) == 29292517
+      assert res |> hd |> Map.get(:id) == 29292517
     end
   end
 
@@ -34,7 +34,7 @@ defmodule ViewTest do
       |> compact_views
 
       assert length(res) == 9
-      assert res |> hd |> Dict.get(:id) == 29292517
+      assert res |> hd |> Map.get(:id) == 29292517
     end
   end
 

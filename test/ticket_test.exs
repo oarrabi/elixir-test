@@ -128,8 +128,8 @@ defmodule TicketTest do
     ticket = ticket |> Ticket.add_collaborator(name: "Test1", email: "t1@t.com")
     assert ticket.collaborators |> length == 2
 
-    assert ticket.collaborators |> Enum.at(0) |> Dict.get(:name) == "Test"
-    assert ticket.collaborators |> Enum.at(1) |> Dict.get(:name) == "Test1"
+    assert ticket.collaborators |> Enum.at(0) |> Map.get(:name) == "Test"
+    assert ticket.collaborators |> Enum.at(1) |> Map.get(:name) == "Test1"
 
     ticket = ticket |> Ticket.add_collaborator(id: "12345")
     assert ticket.collaborators |> length == 3
@@ -149,8 +149,8 @@ defmodule TicketTest do
     ticket = ticket |> Ticket.add_custom_fields("2", "Value2")
     assert ticket.custom_fields |> length == 2
 
-    assert ticket.custom_fields |> Enum.at(0) |> Dict.get(:value) == "Value1"
-    assert ticket.custom_fields |> Enum.at(1) |> Dict.get(:value) == "Value2"
+    assert ticket.custom_fields |> Enum.at(0) |> Map.get(:value) == "Value1"
+    assert ticket.custom_fields |> Enum.at(1) |> Map.get(:value) == "Value2"
     # assert ticket.status == "open"
   end
 
@@ -295,7 +295,7 @@ defmodule TicketTest do
         |> all_tickets
 
         assert length(res.tickets) == 100
-        assert res.tickets |> hd |> Dict.get(:id) == 1
+        assert res.tickets |> hd |> Map.get(:id) == 1
       end
     end
 
@@ -306,7 +306,7 @@ defmodule TicketTest do
         email: "email@me.com", token: "jt82RfMETyIBzCBQwNuLeCh4YxdAps8rJeN99SW2")
         |> recent_tickets
 
-        assert res |> hd |> Dict.get(:raw_subject) == "The subject2"
+        assert res |> hd |> Map.get(:raw_subject) == "The subject2"
         assert length(res) == 5
       end
     end
@@ -318,7 +318,7 @@ defmodule TicketTest do
           email: "email@me.com", token: "jt82RfMETyIBzCBQwNuLeCh4YxdAps8rJeN99SW2")
         |> show_ticket(requester_id: "4047329778")
 
-        assert res |> hd |> Dict.get(:raw_subject) == "The subject"
+        assert res |> hd |> Map.get(:raw_subject) == "The subject"
         assert length(res) == 18
       end
     end
@@ -330,7 +330,7 @@ defmodule TicketTest do
           email: "email@me.com", token: "jt82RfMETyIBzCBQwNuLeCh4YxdAps8rJeN99SW2")
         |> show_ticket(assignee_id: "236084977")
 
-        assert res |> hd |> Dict.get(:raw_subject) == "Yiuiib"
+        assert res |> hd |> Map.get(:raw_subject) == "Yiuiib"
         assert length(res) == 4
       end
     end
@@ -342,7 +342,7 @@ defmodule TicketTest do
           email: "email@me.com", token: "jt82RfMETyIBzCBQwNuLeCh4YxdAps8rJeN99SW2")
         |> show_ticket(cc_id: "236084977")
 
-        assert res |> hd |> Dict.get(:raw_subject) == "Yiuiib"
+        assert res |> hd |> Map.get(:raw_subject) == "Yiuiib"
         assert length(res) == 1
       end
     end
@@ -354,7 +354,7 @@ defmodule TicketTest do
           email: "email@me.com", token: "jt82RfMETyIBzCBQwNuLeCh4YxdAps8rJeN99SW2")
         |> show_ticket(organization_id: "22016037")
 
-        assert res |> hd |> Dict.get(:raw_subject) == "This is a sample ticket requested and submitted by you"
+        assert res |> hd |> Map.get(:raw_subject) == "This is a sample ticket requested and submitted by you"
         assert length(res) == 50
       end
     end
@@ -367,8 +367,8 @@ defmodule TicketTest do
     email: "test@test.com", password: "test")
     |> show_ticket(ticket_id: "587")
 
-    assert res |> Dict.get(:id) == 587
-    assert res |> Dict.get(:subject) == "The subject"
+    assert res |> Map.get(:id) == 587
+    assert res |> Map.get(:subject) == "The subject"
     end
   end
 
@@ -380,7 +380,7 @@ defmodule TicketTest do
       email: "test@test.com", password: "test")
       |> show_tickets(ids: ["1", "587"])
 
-      assert res |> hd |> Dict.get(:id) == 1
+      assert res |> hd |> Map.get(:id) == 1
       assert length(res) == 2
     end
   end

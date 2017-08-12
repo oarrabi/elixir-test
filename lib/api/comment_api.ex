@@ -3,6 +3,7 @@ defmodule Zendesk.CommentApi do
   @moduledoc """
   Module that contains fucntions to deal with Zendesk comments
   """
+  use Zendesk.CommonApi
 
   @all_comments_for_ticket "/tickets/%s/comments.json"
   @redact_comment "/tickets/%s/comments/%s/redact.json"
@@ -10,7 +11,8 @@ defmodule Zendesk.CommentApi do
 
   @all_comments_for_request "/requests/%s/comments.json"
   @comment_for_request "/requests/%s/comments/%s.json"
-  use Zendesk.CommonApi
+
+  @headers ["Content-Type": "application/json"]
 
 
   @doc """
@@ -55,7 +57,7 @@ defmodule Zendesk.CommentApi do
     verb: :put,
     endpoint: ExPrintf.sprintf(@redact_comment, [ticket_id, comment_id]),
     body: redact_json(text),
-    headers: headers)
+    headers: @headers)
   end
 
   @doc """
@@ -75,13 +77,8 @@ defmodule Zendesk.CommentApi do
     %{text: text} |> Poison.encode |> elem(1)
   end
 
-  defp headers do
-    ["Content-Type": "application/json"]
-  end
-
   defp parse_get_comment(response) do
     Zendesk.Comment.from_json(response)
-
   end
 
   defp parse_get_comments(response) do

@@ -3,6 +3,8 @@ defmodule Zendesk.AutomationsApi do
   @moduledoc """
   Module that contains fucntions to deal with Zendesk searches
   """
+  
+  use Zendesk.CommonApi
 
   @list_automations "/automations.json"
   @get_automations "/automations/%s.json"
@@ -10,7 +12,8 @@ defmodule Zendesk.AutomationsApi do
   @create_automation "/automations.json"
   @update_automation "/automations/%s.json"
   @delete_automation "/automations/%s.json"
-  use Zendesk.CommonApi
+
+  @headers ["Content-Type": "application/json"]
 
 
   @doc """
@@ -20,9 +23,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def list_automations(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_automations)
   end
 
@@ -35,9 +38,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def get_automations(account, automation_id) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: ExPrintf.sprintf(@get_automations, [automation_id]))
   end
 
@@ -48,9 +51,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def list_active_automations(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_active_automations)
   end
 
@@ -64,12 +67,12 @@ defmodule Zendesk.AutomationsApi do
   """
   def create_automation(account, automation) do
     json = Zendesk.Ticket.to_json(%{automation: automation})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :post, 
-                    endpoint: @create_automation, 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :post,
+                    endpoint: @create_automation,
+                    body: json,
+                    headers: @headers)
   end
 
   @doc """
@@ -86,12 +89,12 @@ defmodule Zendesk.AutomationsApi do
   def update_automation(account, automation, automation_id) do
     json = Zendesk.Ticket.to_json(%{automation: automation})
     IO.inspect json
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :put, 
-                    endpoint: ExPrintf.sprintf(@update_automation, [automation_id]), 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :put,
+                    endpoint: ExPrintf.sprintf(@update_automation, [automation_id]),
+                    body: json,
+                    headers: @headers)
   end
 
   @doc """
@@ -104,15 +107,11 @@ defmodule Zendesk.AutomationsApi do
   """
 
   def delete_automation(account, automation_id) do
-    perform_request(&parse_delete/1, 
-                    account: account, 
-                    verb: :delete, 
-                    endpoint: ExPrintf.sprintf(@delete_automation, [automation_id]), 
-                    headers: headers)
-  end
-
-  defp headers do
-    ["Content-Type": "application/json"]
+    perform_request(&parse_delete/1,
+                    account: account,
+                    verb: :delete,
+                    endpoint: ExPrintf.sprintf(@delete_automation, [automation_id]),
+                    headers: @headers)
   end
 
   defp parse_delete(response) do

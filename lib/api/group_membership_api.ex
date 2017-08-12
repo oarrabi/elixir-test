@@ -65,11 +65,11 @@ defmodule Zendesk.GroupMembershipApi do
   # Private
 
   defp parse_all_membership(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:group_memberships)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:group_memberships)
   end
 
   defp parse_single_membership(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:group_membership)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:group_membership)
   end
 
 end

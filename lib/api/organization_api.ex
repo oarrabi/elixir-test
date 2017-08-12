@@ -52,7 +52,7 @@ defmodule Zendesk.OrganizationApi do
   # Private
 
   defp parse_organization(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:organization)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:organization)
   end
 
   defp parse_get_organizations(response) do

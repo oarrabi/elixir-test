@@ -42,7 +42,7 @@ defmodule TicketFieldsTest do
     |> TicketField.add_custom_field_option(name: "option2", value: "value2")
 
     assert field.custom_field_options |> length == 2
-    assert field.custom_field_options |> hd |> Dict.get(:name) == "option1"
+    assert field.custom_field_options |> hd |> Map.get(:name) == "option1"
   end
 
   test "it can create a ticket field" do
@@ -58,7 +58,7 @@ defmodule TicketFieldsTest do
       assert res |> Map.get(:title) == "Age"
 
       assert res.custom_field_options |> length == 2
-      assert res.custom_field_options |> hd |> Dict.get(:name) == "Option 1"
+      assert res.custom_field_options |> hd |> Map.get(:name) == "Option 1"
     end
   end
 

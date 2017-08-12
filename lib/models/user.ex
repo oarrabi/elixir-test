@@ -9,11 +9,11 @@ defmodule Zendesk.User do
   `json`: the json to parse
   """
   def from_json_array(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:users)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:users)
   end
 
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:user)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:user)
   end
 
 end

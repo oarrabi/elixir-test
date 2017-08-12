@@ -4,12 +4,13 @@ defmodule Zendesk.TagsApi do
   Module that contains fucntions to deal with Zendesk tags
   """
 
+  use Zendesk.CommonApi
+
   @endpoint "/tags.json"
   @tags_for_ticket "/tickets/%s/tags.json"
   @tags_for_user "/users/%s/tags.json"
 
-  use Zendesk.CommonApi
-
+  @headers ["Content-Type": "application/json"]
 
   @doc """
   Get a list of all tags
@@ -97,7 +98,7 @@ defmodule Zendesk.TagsApi do
     perform_tag_request(account, verb: :delete,
     endpoint: @tags_for_ticket, id: ticket_id, tags: tags)
   end
-  
+
   @doc """
   Delete user tags
 
@@ -116,21 +117,19 @@ defmodule Zendesk.TagsApi do
     account: account,
     verb: verb,
     endpoint: ExPrintf.sprintf(endpoint, [id]),
-    headers: headers,
+    headers: @headers,
     body: tags |> list_to_json(:tags))
   end
 
 
   # Private
 
-  defp headers, do: ["Content-Type": "application/json"]
-
   defp list_to_json(list, key) do
     Poison.encode!(Map.put(%{}, key, list))
   end
 
   defp parse_tags(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:tags)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:tags)
   end
 
 end

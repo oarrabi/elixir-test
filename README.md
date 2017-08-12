@@ -11,7 +11,7 @@ Elixir Zendesk API Client
 Add zenixir to your `mix.exs` deps
 
 	def deps do
-	  [{:zenixir, github: "oarrabi/zenixir"}]
+	  [{:zenixir, github: "nsomar/zenixir"}]
 	end
 
 ## Documentation

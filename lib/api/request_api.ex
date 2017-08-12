@@ -4,14 +4,16 @@ defmodule Zendesk.RequestApi do
   Module that contains fucntions to deal with Zendesk requests
   """
 
+  use Zendesk.CommonApi
+
   @endpoint "/requests.json"
   @request_status "/requests.json?%s"
   @request_for_user "/users/%s/requests.json"
   @request_for_organization "/organizations/%s/requests.json"
   @search_requests "/requests/search.json?query=\"%s\""
   @single_request "/requests/%s.json"
-  use Zendesk.CommonApi
 
+  @headers ["Content-Type": "application/json"]
 
   @doc """
   Get all the requests
@@ -79,7 +81,7 @@ defmodule Zendesk.RequestApi do
   def create_request(account, request: request) do
     json = Zendesk.Request.to_json(%{request: request})
     perform_request(&parse_request/1, account: account, verb: :post, endpoint: @endpoint,
-    body: json, headers: headers)
+    body: json, headers: @headers)
   end
 
   @doc """
@@ -93,14 +95,10 @@ defmodule Zendesk.RequestApi do
     json = Zendesk.Request.to_json(%{request: request})
     perform_request(&parse_request/1, account: account, verb: :put,
     endpoint: ExPrintf.sprintf(@single_request, [request_id]),
-    body: json, headers: headers)
+    body: json, headers: @headers)
   end
 
   # Private
-
-  defp headers do
-    ["Content-Type": "application/json"]
-  end
 
   defp parse_request(response) do
     Zendesk.Request.from_json(response)

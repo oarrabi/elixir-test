@@ -5,7 +5,7 @@
   "exactor": {:hex, :exactor, "2.2.2", "90b27d72c05614801a60f8400afd4e4346dfc33ea9beffe3b98a794891d2ff96", [], []},
   "excoveralls": {:hex, :excoveralls, "0.5.7", "5d26e4a7cdf08294217594a1b0643636accc2ad30e984d62f1d166f70629ff50", [], [{:exjsx, "~> 3.0", [hex: :exjsx, optional: false]}, {:hackney, ">= 0.12.0", [hex: :hackney, optional: false]}]},
   "exjsx": {:hex, :exjsx, "3.2.1", "1bc5bf1e4fd249104178f0885030bcd75a4526f4d2a1e976f4b428d347614f0f", [], [{:jsx, "~> 2.8.0", [hex: :jsx, optional: false]}]},
-  "exprintf": {:git, "https://github.com/parroty/exprintf.git", "4c498c8b580d15b91655acae1e41d0e432ff686f", []},
+  "exprintf": {:git, "https://github.com/parroty/exprintf.git", "608ee65eca200638b2d3548beb134b7dad0e75f6", []},
   "exvcr": {:hex, :exvcr, "0.8.4", "23ce3a7ff428ed98127292da1b6d04418064391d1045c00cd8ee2da37c5b839b", [:mix], [{:exactor, "~> 2.2", [hex: :exactor, optional: false]}, {:exjsx, "~> 3.2", [hex: :exjsx, optional: false]}, {:httpoison, "~> 0.8", [hex: :httpoison, optional: true]}, {:httpotion, "~> 3.0", [hex: :httpotion, optional: true]}, {:ibrowse, "~> 4.2.2", [hex: :ibrowse, optional: true]}, {:meck, "~> 0.8.3", [hex: :meck, optional: false]}]},
   "hackney": {:hex, :hackney, "1.6.3", "d489d7ca2d4323e307bedc4bfe684323a7bf773ecfd77938f3ee8074e488e140", [:mix, :rebar3], [{:certifi, "0.7.0", [hex: :certifi, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:ssl_verify_fun, "1.1.1", [hex: :ssl_verify_fun, optional: false]}]},
   "httpoison": {:hex, :httpoison, "0.10.0", "4727b3a5e57e9a4ff168a3c2883e20f1208103a41bccc4754f15a9366f49b676", [:mix], [{:hackney, "~> 1.6.3", [hex: :hackney, optional: false]}]},
