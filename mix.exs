@@ -1,7 +1,7 @@
 defmodule NewTest.Mixfile do
   use Mix.Project
 
-  def project do
+  def project() do
     [app: :zenixir,
      version: "0.0.1",
      elixir: "~> 1.2",
@@ -9,7 +9,7 @@ defmodule NewTest.Mixfile do
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-     deps: deps]
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -19,7 +19,7 @@ defmodule NewTest.Mixfile do
     [applications: [:logger, :httpoison]]
   end
 
-  defp description do
+  defp description() do
     """
     Elixir Zendesk API Client http://developer.zendesk.com/
     """
@@ -34,7 +34,7 @@ defmodule NewTest.Mixfile do
   #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
   #
   # Type "mix help deps" for more examples and options
-  defp deps do
+  defp deps() do
     [
       {:httpoison, "~> 0.9"},
       {:poison, "~> 2.0"},
