@@ -1,5 +1,5 @@
 # Zenixir
-[![Build Status](https://travis-ci.org/oarrabi/zenixir.svg)](https://travis-ci.org/oarrabi/zenixir)
+[![Build Status](https://travis-ci.org/nsomar/zenixir.svg?branch=master)](https://travis-ci.org/nsomar/zenixir)
 [![Coverage Status](https://coveralls.io/repos/oarrabi/zenixir/badge.svg?branch=master&service=github)](https://coveralls.io/github/oarrabi/zenixir?branch=master)
 [![Deps Status](https://beta.hexfaktor.org/badge/all/github/oarrabi/zenixir.svg)](https://beta.hexfaktor.org/github/oarrabi/zenixir)
 [![Inline docs](http://inch-ci.org/github/oarrabi/zenixir.svg)](http://inch-ci.org/github/oarrabi/zenixir)
