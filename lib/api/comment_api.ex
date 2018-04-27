@@ -55,7 +55,7 @@ defmodule Zendesk.CommentApi do
     verb: :put,
     endpoint: ExPrintf.sprintf(@redact_comment, [ticket_id, comment_id]),
     body: redact_json(text),
-    headers: headers)
+    headers: headers())
   end
 
   @doc """

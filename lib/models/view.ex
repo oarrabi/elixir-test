@@ -41,7 +41,7 @@ defmodule Zendesk.View do
     add_list_item(view, type, %{field: title, operator: operator, value: value})
   end
 
-  def add_condition(_view, map), do: raise "Wrong condition type passed \"#{to_char_list(map[:type])}\""
+  def add_condition(_view, map), do: raise "Wrong condition type passed \"#{to_charlist(map[:type])}\""
 
   # @condition_types [:all, :any]
   # def add_condition(view, type: type, field: title, operator: operator, value: value) do
@@ -86,11 +86,11 @@ defmodule Zendesk.View do
   end
 
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:view)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:view)
   end
 
   def from_json_array(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:views)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:views)
   end
 
 end

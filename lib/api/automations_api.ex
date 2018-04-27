@@ -20,9 +20,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def list_automations(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_automations)
   end
 
@@ -35,9 +35,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def get_automations(account, automation_id) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: ExPrintf.sprintf(@get_automations, [automation_id]))
   end
 
@@ -48,9 +48,9 @@ defmodule Zendesk.AutomationsApi do
 
   """
   def list_active_automations(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_active_automations)
   end
 
@@ -64,12 +64,12 @@ defmodule Zendesk.AutomationsApi do
   """
   def create_automation(account, automation) do
     json = Zendesk.Ticket.to_json(%{automation: automation})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :post, 
-                    endpoint: @create_automation, 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :post,
+                    endpoint: @create_automation,
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -86,12 +86,12 @@ defmodule Zendesk.AutomationsApi do
   def update_automation(account, automation, automation_id) do
     json = Zendesk.Ticket.to_json(%{automation: automation})
     IO.inspect json
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :put, 
-                    endpoint: ExPrintf.sprintf(@update_automation, [automation_id]), 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :put,
+                    endpoint: ExPrintf.sprintf(@update_automation, [automation_id]),
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -104,11 +104,11 @@ defmodule Zendesk.AutomationsApi do
   """
 
   def delete_automation(account, automation_id) do
-    perform_request(&parse_delete/1, 
-                    account: account, 
-                    verb: :delete, 
-                    endpoint: ExPrintf.sprintf(@delete_automation, [automation_id]), 
-                    headers: headers)
+    perform_request(&parse_delete/1,
+                    account: account,
+                    verb: :delete,
+                    endpoint: ExPrintf.sprintf(@delete_automation, [automation_id]),
+                    headers: headers())
   end
 
   defp headers do

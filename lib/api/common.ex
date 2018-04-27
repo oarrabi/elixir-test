@@ -6,11 +6,11 @@ defmodule Zendesk.CommonApi do
       defp perform_request(parse_method, args) do
         import Zendesk.CommonApi
         internal_perform_request(parse_method,
-        account: Dict.get(args, :account),
-        verb:  Dict.get(args, :verb),
-        endpoint: Dict.get(args, :endpoint),
-        body: Dict.get(args, :body),
-        headers: Dict.get(args, :headers))
+        account: Keyword.get(args, :account),
+        verb:  Keyword.get(args, :verb),
+        endpoint: Keyword.get(args, :endpoint),
+        body: Keyword.get(args, :body),
+        headers: Keyword.get(args, :headers))
       end
 
       defp perform_upload_file(parse_method, account: account, endpoint: endpoint, file: file) do
@@ -42,7 +42,7 @@ defmodule Zendesk.CommonApi do
     |> parse_response(parse_method, full_endpoint)
   end
 
-  def parse_response(%HTTPoison.Response{status_code: status_code, body: body}, _parse_method, endpoint)
+  def parse_response(%HTTPoison.Response{status_code: status_code, body: body}, _parse_method, _endpoint)
   when status_code == 401 or status_code == 404 do
     Zendesk.Error.from_json(body)
   end
@@ -62,7 +62,7 @@ defmodule Zendesk.CommonApi do
   end
 
   def prepare_params(account, body, headers) do
-    empty_params
+    empty_params()
     |> add_auth(account)
     |> add_body(body)
     |> add_headers(headers)

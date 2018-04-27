@@ -12,7 +12,7 @@ defmodule ClientTest do
       |> Client.request(resource: "organization_memberships.json")
 
       assert length(res.organization_memberships) == 1
-      assert res.organization_memberships |> hd |> Dict.get(:user_id) == 236084977
+      assert res.organization_memberships |> hd |> Map.get(:user_id) == 236084977
     end
   end
 

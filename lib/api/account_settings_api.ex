@@ -18,7 +18,7 @@ defmodule Zendesk.AccountSettingsApi do
   # Private
 
   defp parse_account_settings(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:settings)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:settings)
   end
 
 end

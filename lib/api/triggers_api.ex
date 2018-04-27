@@ -19,9 +19,9 @@ defmodule Zendesk.TriggersApi do
 
   """
   def list_triggers(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_triggers)
   end
 
@@ -34,9 +34,9 @@ defmodule Zendesk.TriggersApi do
 
   """
   def get_triggers(account, id) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: ExPrintf.sprintf(@get_triggers, [id]))
   end
 
@@ -50,12 +50,12 @@ defmodule Zendesk.TriggersApi do
   """
   def create_trigger(account, trigger) do
     json = Zendesk.Ticket.to_json(%{trigger: trigger})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :post, 
-                    endpoint: @create_trigger, 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :post,
+                    endpoint: @create_trigger,
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -71,12 +71,12 @@ defmodule Zendesk.TriggersApi do
 
   def update_trigger(account, trigger, trigger_id) do
     json = Zendesk.Ticket.to_json(%{trigger: trigger})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :put, 
-                    endpoint: ExPrintf.sprintf(@update_trigger, [trigger_id]), 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :put,
+                    endpoint: ExPrintf.sprintf(@update_trigger, [trigger_id]),
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -89,11 +89,11 @@ defmodule Zendesk.TriggersApi do
   """
 
   def delete_trigger(account, trigger_id) do
-    perform_request(&parse_delete/1, 
-                    account: account, 
-                    verb: :delete, 
-                    endpoint: ExPrintf.sprintf(@delete_trigger, [trigger_id]), 
-                    headers: headers)
+    perform_request(&parse_delete/1,
+                    account: account,
+                    verb: :delete,
+                    endpoint: ExPrintf.sprintf(@delete_trigger, [trigger_id]),
+                    headers: headers())
   end
 
   defp headers do

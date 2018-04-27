@@ -12,7 +12,7 @@ defmodule RequestTest do
       |> all_requests
 
       assert length(res) == 56
-      assert res |> hd |> Dict.get(:subject) == "This is a sample ticket requested and submitted by you"
+      assert res |> hd |> Map.get(:subject) == "This is a sample ticket requested and submitted by you"
     end
   end
 
@@ -23,7 +23,7 @@ defmodule RequestTest do
       |> all_requests(statuses: ["open", "closed"])
 
       assert length(res) == 56
-      assert res |> hd |> Dict.get(:subject) == "This is a sample ticket requested and submitted by you"
+      assert res |> hd |> Map.get(:subject) == "This is a sample ticket requested and submitted by you"
     end
   end
 
@@ -34,7 +34,7 @@ defmodule RequestTest do
       |> all_requests(user_id: "4096938127")
 
       assert length(res) == 56
-      assert res |> hd |> Dict.get(:subject) == "This is a sample ticket requested and submitted by you"
+      assert res |> hd |> Map.get(:subject) == "This is a sample ticket requested and submitted by you"
     end
   end
 
@@ -45,7 +45,7 @@ defmodule RequestTest do
       |> all_requests(organization_id: "22016037")
 
       assert length(res) == 56
-      assert res |> hd |> Dict.get(:subject) == "This is a sample ticket requested and submitted by you"
+      assert res |> hd |> Map.get(:subject) == "This is a sample ticket requested and submitted by you"
     end
   end
 
@@ -56,7 +56,7 @@ defmodule RequestTest do
       |> search_requests(query: "sample ticket")
 
       assert length(res) == 56
-      assert res |> hd |> Dict.get(:subject) == "This is a sample ticket requested and submitted by you"
+      assert res |> hd |> Map.get(:subject) == "This is a sample ticket requested and submitted by you"
     end
   end
 

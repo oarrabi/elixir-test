@@ -16,7 +16,7 @@ defmodule Zendesk.SearchApi do
   `query` query to perform
   """
   def search(account, type: type, query: query) do
-    type_string = to_char_list(type)
+    type_string = to_charlist(type)
     search(account, raw_query: "type:#{type_string} #{query}")
   end
 

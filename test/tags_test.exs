@@ -12,7 +12,7 @@ defmodule TagTest do
       |> all_tags
 
       assert length(res) == 52
-      assert res |> hd |> Dict.get(:name) == "tag_one"
+      assert res |> hd |> Map.get(:name) == "tag_one"
     end
   end
 

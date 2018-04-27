@@ -12,7 +12,7 @@ defmodule GroupMEmbershipTest do
       |> all_group_membership
 
       assert length(res) == 30
-      assert res |> hd |> Dict.get(:group_id) == 20305157
+      assert res |> hd |> Map.get(:group_id) == 20305157
     end
   end
 
@@ -23,7 +23,7 @@ defmodule GroupMEmbershipTest do
       |> all_group_membership(user_id: "237064573")
 
       assert length(res) == 3
-      assert res |> hd |> Dict.get(:group_id) == 20305157
+      assert res |> hd |> Map.get(:group_id) == 20305157
     end
   end
 
@@ -34,7 +34,7 @@ defmodule GroupMEmbershipTest do
       |> all_group_membership(group_id: "21554407")
 
       assert length(res) == 5
-      assert res |> hd |> Dict.get(:group_id) == 21554407
+      assert res |> hd |> Map.get(:group_id) == 21554407
     end
   end
 
