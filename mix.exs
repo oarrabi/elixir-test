@@ -37,8 +37,8 @@ defmodule NewTest.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.9"},
-      {:poison, "~> 2.0"},
+      {:httpoison, ">= 1.1.1"},
+      {:poison, ">= 2.0.0"},
       {:exprintf, github: "parroty/exprintf"},
       {:exvcr, only: :test},
       {:excoveralls, only: :test},
