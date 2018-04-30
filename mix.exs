@@ -40,8 +40,8 @@ defmodule NewTest.Mixfile do
       {:httpoison, "~> 0.9"},
       {:poison, "~> 2.0"},
       {:exprintf, github: "parroty/exprintf"},
-      {:exvcr, "~> 0.7", only: :test},
-      {:excoveralls, "~> 0.5", only: :test},
+      {:exvcr, only: :test},
+      {:excoveralls, only: :test},
       {:inch_ex, ">= 0.0.0", only: :docs},
       {:ex_doc, "~> 0.12", only: :dev}
     ]
