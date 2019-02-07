@@ -18,7 +18,7 @@ defmodule Zendesk.UserFieldsApi do
   # Private
 
   defp parse_user_fields(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:user_fields)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:user_fields)
   end
 
 end

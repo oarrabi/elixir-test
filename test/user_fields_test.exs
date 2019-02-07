@@ -12,7 +12,7 @@ defmodule UserFieldsTest do
       |> all_user_fields
 
       assert length(res) == 1
-      assert res |> hd |> Dict.get(:title) == "test2"
+      assert res |> hd |> Map.get(:title) == "test2"
     end
   end
 

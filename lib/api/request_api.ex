@@ -79,7 +79,7 @@ defmodule Zendesk.RequestApi do
   def create_request(account, request: request) do
     json = Zendesk.Request.to_json(%{request: request})
     perform_request(&parse_request/1, account: account, verb: :post, endpoint: @endpoint,
-    body: json, headers: headers)
+    body: json, headers: headers())
   end
 
   @doc """
@@ -93,7 +93,7 @@ defmodule Zendesk.RequestApi do
     json = Zendesk.Request.to_json(%{request: request})
     perform_request(&parse_request/1, account: account, verb: :put,
     endpoint: ExPrintf.sprintf(@single_request, [request_id]),
-    body: json, headers: headers)
+    body: json, headers: headers())
   end
 
   # Private

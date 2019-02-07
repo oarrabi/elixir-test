@@ -62,11 +62,11 @@ defmodule Zendesk.AttachmentApi do
   end
 
   defp parse_upload(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:upload)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:upload)
   end
 
   defp parse_attachment(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:attachment)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:attachment)
   end
 
 end

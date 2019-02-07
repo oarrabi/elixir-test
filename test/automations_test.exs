@@ -10,7 +10,7 @@ defmodule AutomationsTest do
     assert ticket.comment.body == "Hello"
   end
 
- 
+
 
   test "it can get a ticket with id" do
     use_cassette "get_ticket_with_id" do
@@ -19,8 +19,8 @@ defmodule AutomationsTest do
     email: "test@test.com", password: "test")
     |> show_ticket(ticket_id: "587")
 
-    assert res |> Dict.get(:id) == 587
-    assert res |> Dict.get(:subject) == "The subject"
+    assert res |> Map.get(:id) == 587
+    assert res |> Map.get(:subject) == "The subject"
     end
   end
 
@@ -32,7 +32,7 @@ defmodule AutomationsTest do
       email: "test@test.com", password: "test")
       |> show_tickets(ids: ["1", "587"])
 
-      assert res |> hd |> Dict.get(:id) == 1
+      assert res |> hd |> Map.get(:id) == 1
       assert length(res) == 2
     end
   end

@@ -10,7 +10,7 @@ defmodule Zendesk.TicketRelated do
   `json`: the json to parse
   """
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:ticket_related)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:ticket_related)
   end
 
 end

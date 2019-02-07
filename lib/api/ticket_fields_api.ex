@@ -39,7 +39,7 @@ defmodule Zendesk.TicketFieldsApi do
     json = TicketField.to_json(%{ticket_field: ticket_field})
 
     perform_request(&parse_ticket_field/1, account: account, verb: :post,
-    body: json, endpoint: @create_field, headers: headers)
+    body: json, endpoint: @create_field, headers: headers())
   end
 
   @doc """
@@ -55,7 +55,7 @@ defmodule Zendesk.TicketFieldsApi do
     perform_request(&parse_ticket_field/1, account: account, verb: :put,
     body: json,
     endpoint: ExPrintf.sprintf(@update_field, [field_id]),
-    headers: headers)
+    headers: headers())
   end
 
   @doc """

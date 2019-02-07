@@ -30,11 +30,11 @@ defmodule Zendesk.BrandApi do
   # Private
 
   defp prase_brands(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:brands)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:brands)
   end
 
   defp prase_brand(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:brand)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:brand)
   end
 
 end

@@ -12,7 +12,7 @@ defmodule OrganizationTest do
       |> all_organizations
 
       assert length(res) == 2
-      assert res |> hd |> Dict.get(:name) == "[TEST] Mobile - Enterprise - Testing - Z3N"
+      assert res |> hd |> Map.get(:name) == "[TEST] Mobile - Enterprise - Testing - Z3N"
     end
   end
 
@@ -23,7 +23,7 @@ defmodule OrganizationTest do
       |> all_organizations(user_id: "236084977")
 
       assert length(res) == 1
-      assert res |> hd |> Dict.get(:name) == "Mobile - Enterprise - Testing - Z3N"
+      assert res |> hd |> Map.get(:name) == "Mobile - Enterprise - Testing - Z3N"
     end
   end
 
@@ -34,7 +34,7 @@ defmodule OrganizationTest do
       |> autocomplete_organizations(name: "test")
 
       assert length(res) == 1
-      assert res |> hd |> Dict.get(:name) == "Mobile - Enterprise - Testing - Z3N"
+      assert res |> hd |> Map.get(:name) == "Mobile - Enterprise - Testing - Z3N"
     end
   end
 

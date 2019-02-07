@@ -150,11 +150,11 @@ defmodule Zendesk.Request do
   end
 
   def from_json_array(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:requests)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:requests)
   end
 
   def from_json(json) do
-    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Dict.get(:request)
+    Poison.Parser.parse(json, keys: :atoms) |> elem(1) |> Map.get(:request)
   end
 
 end

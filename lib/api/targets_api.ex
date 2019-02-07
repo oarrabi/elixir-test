@@ -8,7 +8,8 @@ defmodule Zendesk.TargetsApi do
   @show_targets "/targets/%s.json"
   @create_target "/targets.json"
   @update_target "/targets/%s.json"
-  @reorder_targets "/targets/reorder.json"
+  @delete_target "/targets/%s.json"
+  # @reorder_targets "/targets/reorder.json"
   use Zendesk.CommonApi
 
 
@@ -19,9 +20,9 @@ defmodule Zendesk.TargetsApi do
 
   """
   def list_targets(account) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: @list_targets)
   end
 
@@ -34,9 +35,9 @@ defmodule Zendesk.TargetsApi do
 
   """
   def show_target(account, id) do
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :get, 
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :get,
                     endpoint: ExPrintf.sprintf(@show_targets, [id]))
   end
 
@@ -50,12 +51,12 @@ defmodule Zendesk.TargetsApi do
   """
   def create_target(account, target) do
     json = Zendesk.Ticket.to_json(%{target: target})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :post, 
-                    endpoint: @create_target, 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :post,
+                    endpoint: @create_target,
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -71,12 +72,12 @@ defmodule Zendesk.TargetsApi do
 
   def update_target(account, target, target_id) do
     json = Zendesk.Ticket.to_json(%{target: target})
-    perform_request(&Zendesk.Ticket.incremental_from_json_array/1, 
-                    account: account, 
-                    verb: :put, 
-                    endpoint: ExPrintf.sprintf(@update_target, [target_id]), 
-                    body: json, 
-                    headers: headers)
+    perform_request(&Zendesk.Ticket.incremental_from_json_array/1,
+                    account: account,
+                    verb: :put,
+                    endpoint: ExPrintf.sprintf(@update_target, [target_id]),
+                    body: json,
+                    headers: headers())
   end
 
   @doc """
@@ -89,11 +90,11 @@ defmodule Zendesk.TargetsApi do
   """
 
   def delete_target(account, target_id) do
-    perform_request(&parse_delete/1, 
-                    account: account, 
-                    verb: :delete, 
-                    endpoint: ExPrintf.sprintf(@delete_target, [target_id]), 
-                    headers: headers)
+    perform_request(&parse_delete/1,
+                    account: account,
+                    verb: :delete,
+                    endpoint: ExPrintf.sprintf(@delete_target, [target_id]),
+                    headers: headers())
   end
 
   defp headers do

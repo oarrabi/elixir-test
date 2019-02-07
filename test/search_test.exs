@@ -12,7 +12,7 @@ defmodule SeatchTest do
       |> search(type: :user, query: "Tags")
 
       assert length(res.results) == 1
-      assert res.results |> hd |> Dict.get(:name) == "No Tags Agent"
+      assert res.results |> hd |> Map.get(:name) == "No Tags Agent"
     end
   end
 
@@ -23,7 +23,7 @@ defmodule SeatchTest do
       |> search(query: "type:ticket Ticket with Attachments")
 
       assert length(res.results) == 1
-      assert res.results |> hd |> Dict.get(:subject) == "Ticket with Attachments (DO NOT SOLVE OR DELETE)"
+      assert res.results |> hd |> Map.get(:subject) == "Ticket with Attachments (DO NOT SOLVE OR DELETE)"
     end
   end
 

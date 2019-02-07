@@ -11,7 +11,7 @@
 #       email: "test@test.com", password: "test")
 #       |> tickets_with_ids(ids: ["1", "587"])
 #
-#       assert res |> hd |> Dict.get(:id) == 1
+#       assert res |> hd |> Map.get(:id) == 1
 #       assert length(res) == 2
 #     end
 #   end
@@ -25,7 +25,7 @@
 #   #   |> ticket_with_id(id: "587")
 #   #
 #   #   res |> IO.inspect
-#   #   # assert res |> hd |> Dict.get(:raw_subject) == "This is a sample ticket requested and submitted by you"
+#   #   # assert res |> hd |> Map.get(:raw_subject) == "This is a sample ticket requested and submitted by you"
 #   #   # assert length(res) == 50
 #   #   # end
 #   #

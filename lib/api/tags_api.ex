@@ -97,7 +97,7 @@ defmodule Zendesk.TagsApi do
     perform_tag_request(account, verb: :delete,
     endpoint: @tags_for_ticket, id: ticket_id, tags: tags)
   end
-  
+
   @doc """
   Delete user tags
 
@@ -116,7 +116,7 @@ defmodule Zendesk.TagsApi do
     account: account,
     verb: verb,
     endpoint: ExPrintf.sprintf(endpoint, [id]),
-    headers: headers,
+    headers: headers(),
     body: tags |> list_to_json(:tags))
   end
 
@@ -130,7 +130,7 @@ defmodule Zendesk.TagsApi do
   end
 
   defp parse_tags(response) do
-    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Dict.get(:tags)
+    Poison.Parser.parse(response, keys: :atoms) |> elem(1) |> Map.get(:tags)
   end
 
 end
